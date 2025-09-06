@@ -81,8 +81,7 @@ const Education = ({ isEditable }) => {
                       onChange={(date) =>
                         handleEducationChange(index, 'startDate', date)
                       }
-                      dateFormat="yyyy"
-                      showYearPicker
+                      dateFormat="MM/dd/yyyy"
                       className="border-b-2 w-24"
                     />
                     <span className="mx-2">-</span>
@@ -91,8 +90,7 @@ const Education = ({ isEditable }) => {
                       onChange={(date) =>
                         handleEducationChange(index, 'endDate', date)
                       }
-                      dateFormat="yyyy"
-                      showYearPicker
+                      dateFormat="MM/dd/yyyy"
                       className="border-b-2 w-24"
                     />
                   </div>

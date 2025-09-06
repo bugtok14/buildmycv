@@ -2,9 +2,9 @@ import React from 'react';
 
 const Portfolio = ({ isEditable }) => {
   const [portfolio, setPortfolio] = React.useState([
-    { title: 'Project 1', image: 'https://via.placeholder.com/300' },
-    { title: 'Project 2', image: 'https://via.placeholder.com/300' },
-    { title: 'Project 3', image: 'https://via.placeholder.com/300' },
+    { title: 'Project 1', image: 'https://resume-getnextjs.vercel.app/images/portfolio/cozycasa.png' },
+    { title: 'Project 2', image: 'https://resume-getnextjs.vercel.app/images/portfolio/humans.png' },
+    { title: 'Project 3', image: 'https://resume-getnextjs.vercel.app/images/portfolio/roket-squred.png' },
   ]);
 
   const handleAddProject = () => {

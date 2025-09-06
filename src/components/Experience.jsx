@@ -49,65 +49,65 @@ const Experience = ({ isEditable }) => {
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Experience</h2>
       <div className="space-y-8">
         {experience.map((exp, index) => (
-          <div key={index} className="relative">
-            <div className="flex justify-between items-center mb-2">
+          <div key={index} className="pb-4 border-b border-gray-200 flex justify-between items-start">
+            <div className="flex-grow">
+              <div className="flex justify-between items-center mb-2">
+                {isEditable ? (
+                  <input
+                    type="text"
+                    value={exp.company}
+                    onChange={(e) =>
+                      handleExperienceChange(index, 'company', e.target.value)
+                    }
+                    className="text-2xl font-bold border-b-2"
+                  />
+                ) : (
+                  <h3 className="text-2xl font-bold">{exp.company}</h3>
+                )}
+                <span
+                  className={`px-3 py-1 text-sm font-semibold rounded-full ${exp.isCurrent ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}
+                >
+                  {isEditable ? (
+                    <div className="flex items-center">
+                      <DatePicker
+                        selected={exp.startDate}
+                        onChange={(date) =>
+                          handleExperienceChange(index, 'startDate', date)
+                        }
+                        dateFormat="MM/dd/yyyy"
+                        className="border-b-2 w-28"
+                      />
+                      <span className="mx-2">-</span>
+                      <DatePicker
+                        selected={exp.endDate}
+                        onChange={(date) =>
+                          handleExperienceChange(index, 'endDate', date)
+                        }
+                        dateFormat="MM/dd/yyyy"
+                        className="border-b-2 w-28"
+                      />
+                    </div>
+                  ) : (
+                    `${exp.startDate.getFullYear()} - ${exp.endDate.getFullYear()}`
+                  )}
+                </span>
+              </div>
               {isEditable ? (
-                <input
-                  type="text"
-                  value={exp.company}
+                <textarea
+                  value={exp.description}
                   onChange={(e) =>
-                    handleExperienceChange(index, 'company', e.target.value)
+                    handleExperienceChange(index, 'description', e.target.value)
                   }
-                  className="text-2xl font-bold border-b-2"
+                  className="text-gray-600 mt-2 border-b-2 w-full"
                 />
               ) : (
-                <h3 className="text-2xl font-bold">{exp.company}</h3>
+                <p className="text-gray-600 mt-2">{exp.description}</p>
               )}
-              <span
-                className={`px-3 py-1 text-sm font-semibold rounded-full ${exp.isCurrent ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}
-              >
-                {isEditable ? (
-                  <div className="flex items-center">
-                    <DatePicker
-                      selected={exp.startDate}
-                      onChange={(date) =>
-                        handleExperienceChange(index, 'startDate', date)
-                      }
-                      dateFormat="MM/yyyy"
-                      showMonthYearPicker
-                      className="border-b-2 w-28"
-                    />
-                    <span className="mx-2">-</span>
-                    <DatePicker
-                      selected={exp.endDate}
-                      onChange={(date) =>
-                        handleExperienceChange(index, 'endDate', date)
-                      }
-                      dateFormat="MM/yyyy"
-                      showMonthYearPicker
-                      className="border-b-2 w-28"
-                    />
-                  </div>
-                ) : (
-                  `${exp.startDate.toLocaleDateString()} - ${exp.endDate.toLocaleDateString()}`
-                )}
-              </span>
             </div>
-            {isEditable ? (
-              <textarea
-                value={exp.description}
-                onChange={(e) =>
-                  handleExperienceChange(index, 'description', e.target.value)
-                }
-                className="text-gray-600 mt-2 border-b-2 w-full"
-              />
-            ) : (
-              <p className="text-gray-600 mt-2">{exp.description}</p>
-            )}
             {isEditable && (
               <button
                 onClick={() => handleDeleteExperience(index)}
-                className="absolute top-0 right-0 text-red-500 hover:text-red-700"
+                className="text-red-500 hover:text-red-700 ml-4"
               >
                 <svg
                   className="w-6 h-6"
