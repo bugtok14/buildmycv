@@ -12,7 +12,7 @@ const Header = ({ isEditable, setIsEditable }) => {
       <div className="flex items-center space-x-3">
         {/* GitHub Icon */}
         <a
-          href="https://github.com/your-username/your-repo"
+          href="https://github.com/bugtok14/buildmycv.git"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-600 hover:text-gray-900 transition-colors duration-300 p-2 rounded-full hover:bg-gray-100"
