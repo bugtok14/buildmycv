@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = ({ isEditable, setIsEditable }) => {
   return (
-    <header className="flex justify-between items-center py-6 px-8 bg-white shadow-md">
+    <header className="fixed top-0 left-0 w-full flex justify-between items-center py-6 px-8 bg-white shadow-md z-50">
       <h1 className="text-3xl font-bold text-gray-800">Resume</h1>
       <button
         onClick={() => setIsEditable(!isEditable)}
