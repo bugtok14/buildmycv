@@ -1,14 +1,15 @@
 import React from 'react';
+import profile from '../assets/profile.jpg';
 
 const Profile = ({ isEditable }) => {
-  const [name, setName] = React.useState('Your Name');
+  const [name, setName] = React.useState('Jane Doe');
   const [bio, setBio] = React.useState(
-    'A short bio about yourself. This is a great place to highlight your key skills and experience.'
+    'I am a dedicated software tester with a strong commitment to continuous learning and professional growth, striving to excel in my field and ensure the highest quality in every project.'
   );
-  const [phone, setPhone] = React.useState('123-456-7890');
-  const [email, setEmail] = React.useState('your.email@example.com');
-  const [location, setLocation] = React.useState('Your City, Country');
-  const [profileImage, setProfileImage] = React.useState('https://resume-getnextjs.vercel.app/images/hero/hero-image.png');
+  const [phone, setPhone] = React.useState('+63-9123456768');
+  const [email, setEmail] = React.useState('bugtok@mailer.com');
+  const [location, setLocation] = React.useState('Your City, Philippines');
+  const [profileImage, setProfileImage] = React.useState(profile);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -80,7 +81,7 @@ const Profile = ({ isEditable }) => {
               placeholder="Your Name"
             />
           ) : (
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">{name}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{name}</h1>
           )}
           {isEditable ? (
             <textarea

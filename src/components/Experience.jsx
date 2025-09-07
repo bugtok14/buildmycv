@@ -3,19 +3,26 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Experience = ({ isEditable }) => {
+  // helper function to go back x years
+  const getPastDate = (years) => {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() - years);
+    return date;
+  };
+
   const [experience, setExperience] = React.useState([
     {
-      company: 'Example Corp',
-      startDate: new Date(),
+      company: 'Microsoft',
+      startDate: getPastDate(4),
       endDate: new Date(),
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      description: 'Senior Automation Tester with expertise in validating enterprise-level applications. Developed and maintained automated test frameworks for .NET Core and Angular systems, ensuring optimized performance and adherence to security best practices.',
       isCurrent: true,
     },
     {
-      company: 'Old Company',
-      startDate: new Date(),
-      endDate: new Date(),
-      description: 'Sed do eiusmod tempor incididunt ut labore and dolore magna aliqua.',
+      company: 'Amazon',
+      startDate: getPastDate(9),
+      endDate:  getPastDate(4),
+      description: 'Automation Tester experienced in cloud-based environments. Designed and executed automated test frameworks, validated serverless applications on AWS (Lambda, API Gateway), and contributed to efficient CI/CD pipelines with automated testing and deployment strategies.',
       isCurrent: false,
     },
   ]);

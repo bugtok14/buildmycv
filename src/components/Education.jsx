@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const Education = ({ isEditable }) => {
   const [education, setEducation] = React.useState([
     {
-      university: 'University of Example',
+      university: 'University of Heaven',
       course: 'Computer Science',
       startDate: new Date(),
       endDate: new Date(),
@@ -99,7 +99,7 @@ const Education = ({ isEditable }) => {
                   </div>
                 ) : (
                   <div className="font-medium text-gray-800">
-                    {edu.startDate.getFullYear()} - {edu.endDate.getFullYear()}
+                    {(edu.startDate.getFullYear() - 4)} - {edu.endDate.getFullYear()}
                   </div>
                 )}
               </div>

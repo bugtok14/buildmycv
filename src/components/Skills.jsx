@@ -2,12 +2,12 @@ import React from 'react';
 
 const Skills = ({ isEditable }) => {
   const [skills, setSkills] = React.useState([
-    { name: 'React', level: 95 },
-    { name: 'Next.js', level: 84 },
-    { name: 'Tailwind CSS', level: 90 },
-    { name: 'HTML', level: 90 },
-    { name: 'CSS', level: 79 },
-    { name: 'Bootstrap', level: 60 },
+    { name: 'Java', level: 95 },
+    { name: 'Selenium', level: 84 },
+    { name: 'WebdriverIO', level: 90 },
+    { name: 'NodeJs', level: 90 },
+    { name: 'Cucumber/BDD', level: 79 },
+    { name: 'Loving You 💔', level: 40 },
   ]);
 
   const handleAddSkill = () => {
