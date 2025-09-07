@@ -55,7 +55,10 @@ const Experience = ({ isEditable }) => {
       
       <div className="space-y-6">
         {experience.map((exp, index) => (
-          <div key={index} className="p-6 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-300">
+          <div
+            key={index}
+            className="p-6 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-300"
+          >
             <div className="flex justify-between items-start">
               <div className="flex-grow">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
@@ -75,7 +78,11 @@ const Experience = ({ isEditable }) => {
                   
                   <div className="flex items-center">
                     <span
-                      className={`px-3 py-1 text-xs font-semibold rounded-full ${exp.isCurrent ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}
+                      className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                        exp.isCurrent
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-blue-100 text-blue-800'
+                      }`}
                     >
                       {exp.isCurrent ? 'Current' : 'Previous'}
                     </span>
@@ -88,6 +95,9 @@ const Experience = ({ isEditable }) => {
                             handleExperienceChange(index, 'startDate', date)
                           }
                           dateFormat="MMM yyyy"
+                          showMonthYearDropdown
+                          showYearDropdown
+                          scrollableYearDropdown
                           className="p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-28 text-sm"
                         />
                         <span className="mx-2 text-gray-400">to</span>
@@ -97,14 +107,23 @@ const Experience = ({ isEditable }) => {
                             handleExperienceChange(index, 'endDate', date)
                           }
                           dateFormat="MMM yyyy"
-                          className="p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-28 text-sm"
+                          showMonthYearDropdown
+                          showYearDropdown
+                          scrollableYearDropdown
+                          className={`p-1 border rounded-md w-28 text-sm ${
+                            exp.isCurrent
+                              ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                              : 'border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                          }`}
                           disabled={exp.isCurrent}
                         />
                         <label className="ml-3 flex items-center text-sm text-gray-600">
                           <input
                             type="checkbox"
                             checked={exp.isCurrent}
-                            onChange={(e) => handleExperienceChange(index, 'isCurrent', e.target.checked)}
+                            onChange={(e) =>
+                              handleExperienceChange(index, 'isCurrent', e.target.checked)
+                            }
                             className="mr-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                           />
                           Current
@@ -112,7 +131,8 @@ const Experience = ({ isEditable }) => {
                       </div>
                     ) : (
                       <span className="ml-4 text-gray-600 text-sm">
-                        {formatDate(exp.startDate)} - {exp.isCurrent ? 'Present' : formatDate(exp.endDate)}
+                        {formatDate(exp.startDate)} -{' '}
+                        {exp.isCurrent ? 'Present' : formatDate(exp.endDate)}
                       </span>
                     )}
                   </div>
@@ -165,8 +185,18 @@ const Experience = ({ isEditable }) => {
           onClick={handleAddExperience}
           className="flex items-center justify-center mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300 w-full md:w-auto"
         >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            ></path>
           </svg>
           Add Experience
         </button>
