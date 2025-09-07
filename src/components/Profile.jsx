@@ -34,6 +34,33 @@ const Profile = ({ isEditable }) => {
               alt="Profile"
               className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-xl md:rounded-2xl shadow-lg object-cover mx-auto md:mx-0 border-4 border-white"
             />
+            
+            {/* Always visible camera icon badge in edit mode */}
+            {isEditable && (
+              <div className="absolute bottom-2 right-2 bg-blue-600 text-white p-2 rounded-full shadow-md">
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                  ></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+              </div>
+            )}
+            
             {isEditable && (
               <label
                 htmlFor="profile-upload"
@@ -70,6 +97,13 @@ const Profile = ({ isEditable }) => {
               </label>
             )}
           </div>
+          
+          {/* Helper text for mobile users */}
+          {isEditable && (
+            <p className="text-center text-blue-600 text-xs mt-2 md:hidden">
+              Tap the camera icon to upload a photo
+            </p>
+          )}
         </div>
         <div className="w-full md:w-2/3 md:pl-6 lg:pl-8 text-center md:text-left mt-4 md:mt-0">
           {isEditable ? (
