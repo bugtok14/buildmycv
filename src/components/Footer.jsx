@@ -13,6 +13,8 @@ const Footer = () => {
         body, html {
           margin: 0 !important;
           padding: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
         }
         
         /* Hide all elements except the resume */
@@ -44,9 +46,40 @@ const Footer = () => {
           page-break-inside: avoid;
         }
         
-        /* Hide fixed UI elements */
-        .fixed, .edit, .save, .download-btn, header {
+        /* Portfolio specific print fixes */
+        .portfolio-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 0.5rem !important;
+        }
+        
+        .portfolio-item {
+          break-inside: avoid;
+          page-break-inside: avoid;
+          margin-bottom: 0.75rem;
+        }
+        
+        .portfolio-item img {
+          max-height: 200px !important;
+          object-fit: contain !important;
+        }
+        
+        /* Ensure links are visible in print */
+        a {
+          color: #3b82f6 !important;
+          text-decoration: underline !important;
+        }
+        
+        /* Hide Netlify badge and other UI elements */
+        .fixed, .edit, .save, .download-btn, header, footer, 
+        #netlify-badge, [class*="netlify"], [data-netlify] {
           display: none !important;
+          visibility: hidden !important;
+        }
+        
+        /* Hide any potential watermarks */
+        [class*="watermark"], [id*="watermark"] {
+          display: none !important;
+          visibility: hidden !important;
         }
         
         /* Force colors to show in print */
@@ -59,6 +92,7 @@ const Footer = () => {
         /* Set page margins for better layout */
         @page {
           margin: 0.5in;
+          size: portrait;
         }
       }
     `;
@@ -67,8 +101,11 @@ const Footer = () => {
     // Add a small delay to ensure styles are applied before printing
     setTimeout(() => {
       window.print();
-      document.head.removeChild(style);
-      setIsVisible(true);
+      // Clean up after printing
+      setTimeout(() => {
+        document.head.removeChild(style);
+        setIsVisible(true);
+      }, 500);
     }, 100);
   };
 
@@ -86,7 +123,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 download-btn transition-opacity duration-300`}>
+    <footer className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 download-btn transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <button
         onClick={handleDownloadPDF}
         className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg md:rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center text-xs sm:text-sm"
