@@ -2,6 +2,10 @@
 
 /* Add to your main CSS file or within a <style> tag in your main HTML file */
 @media print {
+  @page {
+    margin: 0; /* Removes browser-injected headers/footers */
+  }
+  
   body {
     margin: 0;
     padding: 0;
