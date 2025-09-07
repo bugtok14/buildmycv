@@ -1,4 +1,3 @@
-'use client';
 import React, { useEffect, useState } from 'react';
 
 const Footer = () => {
@@ -56,12 +55,15 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="fixed bottom-8 right-8 download-btn">
+    <footer className={`fixed bottom-8 right-8 download-btn transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <button
         onClick={handleDownloadPDF}
-        className="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:bg-blue-700 transition-colors duration-300"
+        className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
       >
-        Download this as PDF
+        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        </svg>
+        Download PDF
       </button>
     </footer>
   );

@@ -31,21 +31,16 @@ const Education = ({ isEditable }) => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg mt-8">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">Education</h2>
-      <table className="w-full">
-        <thead>
-          <tr className="border-b-2 border-gray-200">
-            <th className="text-left py-3">University</th>
-            <th className="text-left py-3">Course</th>
-            <th className="text-left py-3">Year</th>
-            {isEditable && <th className="text-left py-3">Actions</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {education.map((edu, index) => (
-            <tr key={index} className="border-b border-gray-200">
-              <td className="py-3">
+    <div className="bg-white p-8 rounded-2xl shadow-xl mt-8 border border-gray-100">
+      <h2 className="text-3xl font-bold text-gray-800 mb-2">Education</h2>
+      <p className="text-gray-600 mb-6">Your academic background and qualifications</p>
+      
+      <div className="space-y-6">
+        {education.map((edu, index) => (
+          <div key={index} className="p-6 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-300">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+              <div className="md:col-span-5">
+                <div className="text-sm text-gray-500 mb-1">University</div>
                 {isEditable ? (
                   <input
                     type="text"
@@ -53,13 +48,16 @@ const Education = ({ isEditable }) => {
                     onChange={(e) =>
                       handleEducationChange(index, 'university', e.target.value)
                     }
-                    className="border-b-2 w-full"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="University name"
                   />
                 ) : (
-                  edu.university
+                  <div className="font-medium text-gray-800">{edu.university}</div>
                 )}
-              </td>
-              <td className="py-3">
+              </div>
+              
+              <div className="md:col-span-4">
+                <div className="text-sm text-gray-500 mb-1">Course</div>
                 {isEditable ? (
                   <input
                     type="text"
@@ -67,45 +65,54 @@ const Education = ({ isEditable }) => {
                     onChange={(e) =>
                       handleEducationChange(index, 'course', e.target.value)
                     }
-                    className="border-b-2 w-full"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Course name"
                   />
                 ) : (
-                  edu.course
+                  <div className="font-medium text-gray-800">{edu.course}</div>
                 )}
-              </td>
-              <td className="py-3">
+              </div>
+              
+              <div className="md:col-span-2">
+                <div className="text-sm text-gray-500 mb-1">Duration</div>
                 {isEditable ? (
-                  <div className="flex items-center">
+                  <div className="flex flex-col space-y-2">
                     <DatePicker
                       selected={edu.startDate}
                       onChange={(date) =>
                         handleEducationChange(index, 'startDate', date)
                       }
-                      dateFormat="MM/dd/yyyy"
-                      className="border-b-2 w-24"
+                      dateFormat="yyyy"
+                      showYearPicker
+                      className="p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
                     />
-                    <span className="mx-2">-</span>
+                    <span className="text-center">to</span>
                     <DatePicker
                       selected={edu.endDate}
                       onChange={(date) =>
                         handleEducationChange(index, 'endDate', date)
                       }
-                      dateFormat="MM/dd/yyyy"
-                      className="border-b-2 w-24"
+                      dateFormat="yyyy"
+                      showYearPicker
+                      className="p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
                     />
                   </div>
                 ) : (
-                  `${edu.startDate.getFullYear()} - ${edu.endDate.getFullYear()}`
+                  <div className="font-medium text-gray-800">
+                    {edu.startDate.getFullYear()} - {edu.endDate.getFullYear()}
+                  </div>
                 )}
-              </td>
+              </div>
+              
               {isEditable && (
-                <td className="py-3">
+                <div className="md:col-span-1 flex items-center justify-end">
                   <button
                     onClick={() => handleDeleteEducation(index)}
-                    className="text-red-500 hover:text-red-700"
+                    className="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors duration-300"
+                    aria-label="Delete education"
                   >
                     <svg
-                      className="w-6 h-6"
+                      className="w-5 h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -119,17 +126,21 @@ const Education = ({ isEditable }) => {
                       ></path>
                     </svg>
                   </button>
-                </td>
+                </div>
               )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </div>
+          </div>
+        ))}
+      </div>
+      
       {isEditable && (
         <button
           onClick={handleAddEducation}
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold mt-6"
+          className="flex items-center justify-center mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300 w-full md:w-auto"
         >
+          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
           Add Education
         </button>
       )}
