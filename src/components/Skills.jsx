@@ -33,37 +33,37 @@ const Skills = ({ isEditable }) => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl mt-8 border border-gray-100">
-      <h2 className="text-3xl font-bold text-gray-800 mb-2">Skills Gained Through Experience</h2>
-      <p className="text-gray-600 mb-6">Your technical proficiencies and expertise levels</p>
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg md:shadow-xl mt-6 md:mt-8 border border-gray-100">
+      <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Skills Gained Through Experience</h2>
+      <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Your technical proficiencies and expertise levels</p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {skills.map((skill, index) => (
-          <div key={index} className="p-4 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-300">
+          <div key={index} className="p-3 sm:p-4 border border-gray-200 rounded-lg sm:rounded-xl hover:shadow-md transition-shadow duration-300">
             <div className="flex justify-between items-center mb-2">
               {isEditable ? (
                 <input
                   type="text"
                   value={skill.name}
                   onChange={(e) => handleSkillChange(index, 'name', e.target.value)}
-                  className="font-semibold text-gray-800 p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-32"
+                  className="font-semibold text-gray-800 p-1 text-sm sm:text-base border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-28"
                   placeholder="Skill name"
                 />
               ) : (
-                <span className="font-semibold text-gray-800">{skill.name}</span>
+                <span className="font-semibold text-gray-800 text-sm sm:text-base">{skill.name}</span>
               )}
-              <span className="text-blue-600 font-medium">{skill.level}%</span>
+              <span className="text-blue-600 font-medium text-sm sm:text-base">{skill.level}%</span>
             </div>
             
-            <div className="w-full bg-gray-100 rounded-full h-3 mb-2 overflow-hidden">
+            <div className="w-full bg-gray-100 rounded-full h-2 sm:h-3 mb-2 overflow-hidden">
               <div
-                className={`h-3 rounded-full ${getProgressColor(skill.level)} transition-all duration-500`}
+                className={`h-2 sm:h-3 rounded-full ${getProgressColor(skill.level)} transition-all duration-500`}
                 style={{ width: `${skill.level}%` }}
               ></div>
             </div>
             
             {isEditable && (
-              <div className="flex items-center mt-3">
+              <div className="flex items-center mt-2 sm:mt-3">
                 <input
                   type="range"
                   min="0"
@@ -74,11 +74,11 @@ const Skills = ({ isEditable }) => {
                 />
                 <button
                   onClick={() => handleDeleteSkill(index)}
-                  className="text-red-500 hover:text-red-700 ml-4 p-1 rounded-full hover:bg-red-50 transition-colors duration-300"
+                  className="text-red-500 hover:text-red-700 ml-3 sm:ml-4 p-1 rounded-full hover:bg-red-50 transition-colors duration-300"
                   aria-label="Delete skill"
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -101,9 +101,9 @@ const Skills = ({ isEditable }) => {
       {isEditable && (
         <button
           onClick={handleAddSkill}
-          className="flex items-center justify-center mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300 w-full md:w-auto"
+          className="flex items-center justify-center mt-4 sm:mt-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-colors duration-300 w-full md:w-auto text-sm sm:text-base"
         >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
           </svg>
           Add Skill

@@ -56,19 +56,19 @@ const Experience = ({ isEditable }) => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl mt-8 border border-gray-100">
-      <h2 className="text-3xl font-bold text-gray-800 mb-2">Work Experience</h2>
-      <p className="text-gray-600 mb-6">Your professional journey and career history</p>
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg md:shadow-xl mt-6 md:mt-8 border border-gray-100">
+      <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Work Experience</h2>
+      <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Your professional journey and career history</p>
       
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {experience.map((exp, index) => (
           <div
             key={index}
-            className="p-6 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-300"
+            className="p-4 sm:p-6 border border-gray-200 rounded-lg sm:rounded-xl hover:shadow-md transition-shadow duration-300"
           >
-            <div className="flex justify-between items-start">
-              <div className="flex-grow">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
+              <div className="flex-grow w-full">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-3">
                   {isEditable ? (
                     <input
                       type="text"
@@ -76,16 +76,16 @@ const Experience = ({ isEditable }) => {
                       onChange={(e) =>
                         handleExperienceChange(index, 'company', e.target.value)
                       }
-                      className="text-xl font-bold text-gray-800 p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 mb-2 md:mb-0"
+                      className="text-lg sm:text-xl font-bold text-gray-800 p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 mb-2 md:mb-0 w-full"
                       placeholder="Company name"
                     />
                   ) : (
-                    <h3 className="text-xl font-bold text-gray-800">{exp.company}</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-800">{exp.company}</h3>
                   )}
                   
-                  <div className="flex items-center">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-0">
                     <span
-                      className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                      className={`px-2 py-1 text-xs font-semibold rounded-full ${
                         exp.isCurrent
                           ? 'bg-green-100 text-green-800'
                           : 'bg-blue-100 text-blue-800'
@@ -95,7 +95,7 @@ const Experience = ({ isEditable }) => {
                     </span>
                     
                     {isEditable ? (
-                      <div className="flex items-center ml-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center sm:ml-4 gap-2 sm:gap-0">
                         <DatePicker
                           selected={exp.startDate}
                           onChange={(date) =>
@@ -105,9 +105,9 @@ const Experience = ({ isEditable }) => {
                           showMonthYearDropdown
                           showYearDropdown
                           scrollableYearDropdown
-                          className="p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-28 text-sm"
+                          className="p-1 text-xs sm:text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full sm:w-28"
                         />
-                        <span className="mx-2 text-gray-400">to</span>
+                        <span className="mx-1 text-gray-400 text-center sm:text-left">to</span>
                         <DatePicker
                           selected={exp.endDate}
                           onChange={(date) =>
@@ -117,14 +117,14 @@ const Experience = ({ isEditable }) => {
                           showMonthYearDropdown
                           showYearDropdown
                           scrollableYearDropdown
-                          className={`p-1 border rounded-md w-28 text-sm ${
+                          className={`p-1 text-xs sm:text-sm border rounded-md w-full sm:w-28 ${
                             exp.isCurrent
                               ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
                               : 'border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                           }`}
                           disabled={exp.isCurrent}
                         />
-                        <label className="ml-3 flex items-center text-sm text-gray-600">
+                        <label className="flex items-center text-xs sm:text-sm text-gray-600 mt-2 sm:mt-0 sm:ml-3">
                           <input
                             type="checkbox"
                             checked={exp.isCurrent}
@@ -137,7 +137,7 @@ const Experience = ({ isEditable }) => {
                         </label>
                       </div>
                     ) : (
-                      <span className="ml-4 text-gray-600 text-sm">
+                      <span className="text-gray-600 text-xs sm:text-sm mt-2 sm:mt-0 sm:ml-4">
                         {formatDate(exp.startDate)} -{' '}
                         {exp.isCurrent ? 'Present' : formatDate(exp.endDate)}
                       </span>
@@ -151,23 +151,23 @@ const Experience = ({ isEditable }) => {
                     onChange={(e) =>
                       handleExperienceChange(index, 'description', e.target.value)
                     }
-                    className="text-gray-600 mt-2 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
+                    className="text-gray-600 mt-2 p-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
                     rows="3"
                     placeholder="Describe your role and responsibilities"
                   />
                 ) : (
-                  <p className="text-gray-600 mt-2 leading-relaxed">{exp.description}</p>
+                  <p className="text-gray-600 mt-2 leading-relaxed text-sm sm:text-base">{exp.description}</p>
                 )}
               </div>
               
               {isEditable && (
                 <button
                   onClick={() => handleDeleteExperience(index)}
-                  className="text-red-500 hover:text-red-700 ml-4 p-2 rounded-full hover:bg-red-50 transition-colors duration-300"
+                  className="text-red-500 hover:text-red-700 sm:ml-4 p-2 rounded-full hover:bg-red-50 transition-colors duration-300 self-end sm:self-start"
                   aria-label="Delete experience"
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -190,10 +190,10 @@ const Experience = ({ isEditable }) => {
       {isEditable && (
         <button
           onClick={handleAddExperience}
-          className="flex items-center justify-center mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300 w-full md:w-auto"
+          className="flex items-center justify-center mt-4 sm:mt-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-colors duration-300 w-full md:w-auto text-sm sm:text-base"
         >
           <svg
-            className="w-5 h-5 mr-2"
+            className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
