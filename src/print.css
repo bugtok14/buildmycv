@@ -1,0 +1,24 @@
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  header,
+  footer,
+  .no-print {
+    display: none;
+  }
+
+  #resume {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  @page {
+    margin: 20px;
+  }
+}
