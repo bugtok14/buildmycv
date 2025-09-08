@@ -14,7 +14,7 @@ const App = () => {
   return (
     <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
       <Header isEditable={isEditable} setIsEditable={setIsEditable} />
-      <div id="resume" className="max-w-4xl mx-auto py-1 px-4 md:px-0">
+      <div id="pdf-content" className="max-w-4xl mx-auto py-1 px-4 md:px-0">
         <div className="pt-11 pb-8">
           <Profile isEditable={isEditable} />
           <Education isEditable={isEditable} />
