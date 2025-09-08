@@ -1,0 +1,104 @@
+/* Professional PDF Resume Styles */
+
+.pdf-export-active {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  color: #333;
+}
+
+.pdf-export-active .bg-white {
+  background-color: #fff !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.pdf-export-active h1, .pdf-export-active h2, .pdf-export-active h3 {
+  color: #000;
+}
+
+.pdf-export-active h1 {
+  font-size: 28pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.pdf-export-active h2 {
+  font-size: 20pt;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.pdf-export-active .profile-bio {
+  font-size: 12pt;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.pdf-export-active .contact-info {
+  font-size: 11pt;
+}
+
+.pdf-export-active .section {
+  margin-bottom: 20px;
+}
+
+.pdf-export-active .job {
+  margin-bottom: 15px;
+}
+
+.pdf-export-active .job-title {
+  font-size: 14pt;
+  font-weight: bold;
+}
+
+.pdf-export-active .job-company {
+  font-size: 12pt;
+  font-style: italic;
+  color: #555;
+}
+
+.pdf-export-active .job-date {
+  font-size: 10pt;
+  color: #777;
+}
+
+.pdf-export-active .job-description {
+  font-size: 11pt;
+  line-height: 1.4;
+}
+
+.pdf-export-active .skills-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pdf-export-active .skill {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 10pt;
+}
+
+.pdf-export-active .education-item {
+  margin-bottom: 10px;
+}
+
+.pdf-export-active .portfolio-grid {
+    display: none;
+}
+
+/* Hide elements that are not needed in the PDF */
+.pdf-export-active .edit-controls,
+.pdf-export-active .add-button,
+.pdf-export-active .delete-button,
+.pdf-export-active .fixed,
+.pdf-export-active .download-btn,
+.pdf-export-active header,
+.pdf-export-active footer,
+.pdf-export-active [class*="-badge"],
+.pdf-export-active .progress-bar {
+  display: none !important;
+}
