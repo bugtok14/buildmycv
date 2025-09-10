@@ -4,7 +4,6 @@ const Languages = ({ isEditable }) => {
   const [languages, setLanguages] = useState([
     { name: 'English', level: 'Fluent' },
     { name: 'French', level: 'Fluent' },
-    { name: 'German', level: 'Basic' },
     { name: 'Spanish', level: 'Intermediate' },
   ]);
 

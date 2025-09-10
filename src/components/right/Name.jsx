@@ -27,7 +27,7 @@ const Name = ({ isEditable }) => {
           <h2 className="text-2xl text-gray-600">{title}</h2>
         </>
       )}
-      <div className="w-24 border-b-4 border-gray-400 mt-4"></div>
+      <div className="w-24 border-b-4 border-gray-400 mt-2"></div>
     </div>
   );
 };

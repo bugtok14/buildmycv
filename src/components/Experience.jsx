@@ -22,15 +22,6 @@ const Experience = ({ isEditable }) => {
         'Monitor brand consistency across marketing channels and materials.',
       ],
     },
-    {
-      company: 'Studio Shodwe',
-      title: 'Marketing Manager & Specialist',
-      date: '2024 - 2025',
-      tasks: [
-        'Develop and maintain strong relationships with partners, agencies, and vendors to support marketing initiatives.',
-        'Monitor and maintain brand consistency across all marketing channels and materials.',
-      ],
-    },
   ]);
 
   const handleAddExperience = () => {
@@ -67,7 +58,7 @@ const Experience = ({ isEditable }) => {
   };
 
   return (
-    <div className="mt-8">
+    <div className="mt-6">
       <h2 className="text-xl font-bold text-gray-700 uppercase tracking-wider">Work Experience</h2>
       <div className="w-16 border-b-2 border-gray-400 my-2"></div>
       <div className="mt-4 space-y-6">
