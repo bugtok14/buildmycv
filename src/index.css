@@ -1,13 +1,5 @@
 @import "tailwindcss";
 
-.pdf-generating .fixed,
-.pdf-generating button,
-.pdf-generating input,
-.pdf-generating textarea,
-.pdf-generating [contenteditable],
-.pdf-generating .edit-controls {
-  display: none !important;
-}
 .pdf-layout {
   width: 800px; 
   max-width: 800px;

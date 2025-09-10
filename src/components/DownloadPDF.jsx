@@ -1,19 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas-pro";
 
-const DownloadPDF = () => {
-  const [isGenerating, setIsGenerating] = useState(false);
+const DownloadPDF = ({ isGeneratingPDF, setIsGeneratingPDF }) => {
 
   const handleDownload = async () => {
-    setIsGenerating(true);
-    document.body.classList.add("pdf-generating");
+    setIsGeneratingPDF(true);
 
     const pdfContent = document.getElementById("pdf-content");
     if (!pdfContent) {
       console.error("Element with id 'pdf-content' not found.");
-      setIsGenerating(false);
-      document.body.classList.remove("pdf-generating");
+      setIsGeneratingPDF(false);
       return;
     }
 
@@ -61,15 +58,14 @@ const DownloadPDF = () => {
     } catch (error) {
       console.error("Error generating PDF:", error);
     } finally {
-      setIsGenerating(false);
-      document.body.classList.remove("pdf-generating");
+      setIsGeneratingPDF(false);
     }
   };
 
   return (
     <button
       onClick={handleDownload}
-      disabled={isGenerating}
+      disabled={isGeneratingPDF}
       className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md transition-all duration-300 flex items-center cursor-pointer"
     >
       <svg
@@ -86,7 +82,7 @@ const DownloadPDF = () => {
           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
         ></path>
       </svg>
-      {isGenerating ? "Generating..." : "Download PDF"}
+      {isGeneratingPDF ? "Generating..." : "Download PDF"}
     </button>
   );
 };
