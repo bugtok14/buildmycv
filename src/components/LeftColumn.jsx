@@ -7,7 +7,7 @@ import Languages from './Languages';
 const LeftColumn = ({ isEditable }) => {
   return (
     <div
-     className="w-1/3 bg-[#1C3A52] text-white p-8"
+     className="w-1/3.3 bg-[#1C3A52] text-white p-8"
      style={{ backgroundColor: "#1C3A52" }}
      >
       <Profile isEditable={isEditable} />

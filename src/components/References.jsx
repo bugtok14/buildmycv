@@ -35,7 +35,7 @@ const References = ({ isEditable }) => {
     <div className="mt-6">
       <h2 className="text-xl font-bold text-gray-700 uppercase tracking-wider">Reference</h2>
       <div className="w-16 border-b-2 border-gray-400 my-2"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+      <div className="grid grid-cols-2 gap-8 mt-4">
         {references.map((ref, index) => (
           <div key={index} className="relative">
             {isEditable ? (
