@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas-pro';
-import '../assets/pdf-styles.css';
 
 const DownloadPDF = () => {
   const [isGenerating, setIsGenerating] = useState(false);
 
   const handleDownload = async () => {
     setIsGenerating(true);
+    document.body.classList.add('pdf-generating');
     const pdfContent = document.getElementById('pdf-content');
+
+      // Add a special class that forces desktop layout
+    pdfContent.classList.add("pdf-layout");
 
     if (!pdfContent) {
       console.error("Element with id 'pdf-content' not found.");
       setIsGenerating(false);
+      document.body.classList.remove('pdf-generating');
       return;
     }
 
-    pdfContent.classList.add('pdf-export-active');
-
     try {
-      // Add a small delay to ensure styles are applied
-      await new Promise(resolve => setTimeout(resolve, 300));
-
       const canvas = await html2canvas(pdfContent, {
-        scale: 2, // Reduced scale to lower file size
+        scale: 4,
         useCORS: true,
         allowTaint: true,
         logging: false,
       });
 
-      const imgData = canvas.toDataURL('image/jpeg', 0.95); // Use JPEG with compression
+      pdfContent.classList.remove("pdf-layout");
+
+      const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
         format: 'a4',
-        compress: true,
       });
 
       const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -48,13 +48,13 @@ const DownloadPDF = () => {
       let heightLeft = imgHeight;
       let position = 0;
 
-      pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
       heightLeft -= pdfHeight;
 
       while (heightLeft > 0) {
         position = heightLeft - imgHeight;
         pdf.addPage();
-        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pdfHeight;
       }
 
@@ -62,8 +62,8 @@ const DownloadPDF = () => {
     } catch (error) {
       console.error('Error generating PDF:', error);
     } finally {
-      pdfContent.classList.remove('pdf-export-active');
       setIsGenerating(false);
+      document.body.classList.remove('pdf-generating');
     }
   };
 

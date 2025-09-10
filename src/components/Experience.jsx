@@ -1,212 +1,119 @@
-import React from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState } from 'react';
 
 const Experience = ({ isEditable }) => {
-  // helper function to go back x years
-  const getPastDate = (years) => {
-    const date = new Date();
-    date.setFullYear(date.getFullYear() - years);
-    return date;
-  };
-
-  const [experience, setExperience] = React.useState([
+  const [experiences, setExperiences] = useState([
     {
-      company: 'Microsoft',
-      startDate: getPastDate(4),
-      endDate: new Date(),
-      description: 'Senior Automation Tester with expertise in validating enterprise-level applications. Developed and maintained automated test frameworks for .NET Core and Angular systems, ensuring optimized performance and adherence to security best practices.',
-      isCurrent: true,
+      company: 'Borcelle Studio',
+      title: 'Marketing Manager & Specialist',
+      date: '2030 - PRESENT',
+      tasks: [
+        'Develop and execute comprehensive marketing strategies and campaigns that align with the company\'s goals and objectives.',
+        'Lead, mentor, and manage a high-performing marketing team, fostering a collaborative and results-driven work environment.',
+        'Monitor brand consistency across marketing channels and materials.',
+      ],
     },
     {
-      company: 'Amazon',
-      startDate: getPastDate(9),
-      endDate:  getPastDate(4),
-      description: 'Automation Tester experienced in cloud-based environments. Designed and executed automated test frameworks, validated serverless applications on AWS (Lambda, API Gateway), and contributed to efficient CI/CD pipelines with automated testing and deployment strategies.',
-      isCurrent: false,
+      company: 'Fauget Studio',
+      title: 'Marketing Manager & Specialist',
+      date: '2025 - 2029',
+      tasks: [
+        'Create and manage the marketing budget, ensuring efficient allocation of resources and optimizing ROI.',
+        'Oversee market research to identify emerging trends, customer needs, and competitor strategies.',
+        'Monitor brand consistency across marketing channels and materials.',
+      ],
+    },
+    {
+      company: 'Studio Shodwe',
+      title: 'Marketing Manager & Specialist',
+      date: '2024 - 2025',
+      tasks: [
+        'Develop and maintain strong relationships with partners, agencies, and vendors to support marketing initiatives.',
+        'Monitor and maintain brand consistency across all marketing channels and materials.',
+      ],
     },
   ]);
 
   const handleAddExperience = () => {
-    setExperience([
-      ...experience,
-      {
-        company: '',
-        startDate: new Date(),
-        endDate: new Date(),
-        description: '',
-        isCurrent: false,
-      },
-    ]);
-  };
-
-  const handleExperienceChange = (index, field, value) => {
-    const newExperience = [...experience];
-    newExperience[index][field] = value;
-    setExperience(newExperience);
+    setExperiences([...experiences, { company: '', title: '', date: '', tasks: [''] }]);
   };
 
   const handleDeleteExperience = (index) => {
-    const newExperience = experience.filter((_, i) => i !== index);
-    setExperience(newExperience);
+    const newExperiences = experiences.filter((_, i) => i !== index);
+    setExperiences(newExperiences);
   };
 
-  const formatDate = (date) => {
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+  const handleExperienceChange = (index, field, value) => {
+    const newExperiences = [...experiences];
+    newExperiences[index][field] = value;
+    setExperiences(newExperiences);
+  };
+
+  const handleTaskChange = (expIndex, taskIndex, value) => {
+    const newExperiences = [...experiences];
+    newExperiences[expIndex].tasks[taskIndex] = value;
+    setExperiences(newExperiences);
+  };
+
+  const handleAddTask = (expIndex) => {
+    const newExperiences = [...experiences];
+    newExperiences[expIndex].tasks.push('');
+    setExperiences(newExperiences);
+  };
+
+  const handleDeleteTask = (expIndex, taskIndex) => {
+    const newExperiences = [...experiences];
+    newExperiences[expIndex].tasks = newExperiences[expIndex].tasks.filter((_, i) => i !== taskIndex);
+    setExperiences(newExperiences);
   };
 
   return (
-    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg md:shadow-xl mt-6 md:mt-8 border border-gray-100">
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Work Experience</h2>
-      <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Your professional journey and career history</p>
-      
-      <div className="space-y-4 sm:space-y-6">
-        {experience.map((exp, index) => (
-          <div
-            key={index}
-            className="p-4 sm:p-6 border border-gray-200 rounded-lg sm:rounded-xl hover:shadow-md transition-shadow duration-300"
-          >
-            <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
-              <div className="flex-grow w-full">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-3">
-                  {isEditable ? (
-                    <input
-                      type="text"
-                      value={exp.company}
-                      onChange={(e) =>
-                        handleExperienceChange(index, 'company', e.target.value)
-                      }
-                      className="text-lg sm:text-xl font-bold text-gray-800 p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 mb-2 md:mb-0 w-full"
-                      placeholder="Company name"
-                    />
-                  ) : (
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-800">{exp.company}</h3>
-                  )}
-                  
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-0">
-                    <span
-                      className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                        exp.isCurrent
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-blue-100 text-blue-800'
-                      }`}
-                    >
-                      {exp.isCurrent ? 'Current' : 'Previous'}
-                    </span>
-                    
-                    {isEditable ? (
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center sm:ml-4 gap-2 sm:gap-0">
-                        <DatePicker
-                          selected={exp.startDate}
-                          onChange={(date) =>
-                            handleExperienceChange(index, 'startDate', date)
-                          }
-                          dateFormat="MMM yyyy"
-                          showMonthYearDropdown
-                          showYearDropdown
-                          scrollableYearDropdown
-                          className="p-1 text-xs sm:text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full sm:w-28"
-                        />
-                        <span className="mx-1 text-gray-400 text-center sm:text-left">to</span>
-                        <DatePicker
-                          selected={exp.endDate}
-                          onChange={(date) =>
-                            handleExperienceChange(index, 'endDate', date)
-                          }
-                          dateFormat="MMM yyyy"
-                          showMonthYearDropdown
-                          showYearDropdown
-                          scrollableYearDropdown
-                          className={`p-1 text-xs sm:text-sm border rounded-md w-full sm:w-28 ${
-                            exp.isCurrent
-                              ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
-                              : 'border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                          }`}
-                          disabled={exp.isCurrent}
-                        />
-                        <label className="flex items-center text-xs sm:text-sm text-gray-600 mt-2 sm:mt-0 sm:ml-3">
-                          <input
-                            type="checkbox"
-                            checked={exp.isCurrent}
-                            onChange={(e) =>
-                              handleExperienceChange(index, 'isCurrent', e.target.checked)
-                            }
-                            className="mr-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                          />
-                          Current
-                        </label>
-                      </div>
-                    ) : (
-                      <span className="text-gray-600 text-xs sm:text-sm mt-2 sm:mt-0 sm:ml-4">
-                        {formatDate(exp.startDate)} -{' '}
-                        {exp.isCurrent ? 'Present' : formatDate(exp.endDate)}
-                      </span>
-                    )}
-                  </div>
+    <div className="mt-8">
+      <h2 className="text-xl font-bold text-gray-700 uppercase tracking-wider">Work Experience</h2>
+      <div className="w-16 border-b-2 border-gray-400 my-2"></div>
+      <div className="mt-4 space-y-6">
+        {experiences.map((exp, index) => (
+          <div key={index} className="relative">
+            {isEditable ? (
+              <div className="space-y-2 p-4 border border-dashed rounded-md">
+                <div className="flex justify-between items-baseline">
+                  <input type="text" value={exp.company} onChange={(e) => handleExperienceChange(index, 'company', e.target.value)} placeholder="Company" className="font-bold text-lg text-gray-800 bg-transparent border-b w-2/3" />
+                  <input type="text" value={exp.date} onChange={(e) => handleExperienceChange(index, 'date', e.target.value)} placeholder="Date" className="text-sm font-medium text-gray-600 bg-transparent border-b w-1/3 text-right" />
                 </div>
-                
-                {isEditable ? (
-                  <textarea
-                    value={exp.description}
-                    onChange={(e) =>
-                      handleExperienceChange(index, 'description', e.target.value)
-                    }
-                    className="text-gray-600 mt-2 p-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
-                    rows="3"
-                    placeholder="Describe your role and responsibilities"
-                  />
-                ) : (
-                  <p className="text-gray-600 mt-2 leading-relaxed text-sm sm:text-base">{exp.description}</p>
-                )}
-              </div>
-              
-              {isEditable && (
-                <button
-                  onClick={() => handleDeleteExperience(index)}
-                  className="text-red-500 hover:text-red-700 sm:ml-4 p-2 rounded-full hover:bg-red-50 transition-colors duration-300 self-end sm:self-start"
-                  aria-label="Delete experience"
-                >
-                  <svg
-                    className="w-4 h-4 sm:w-5 sm:h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    ></path>
-                  </svg>
+                <input type="text" value={exp.title} onChange={(e) => handleExperienceChange(index, 'title', e.target.value)} placeholder="Title" className="text-gray-700 italic bg-transparent border-b w-full" />
+                <ul className="mt-2 space-y-1 text-gray-600 list-disc list-inside">
+                  {exp.tasks.map((task, i) => (
+                    <li key={i} className="flex items-center">
+                      <input type="text" value={task} onChange={(e) => handleTaskChange(index, i, e.target.value)} className="bg-transparent border-b w-full mr-2" />
+                      <button onClick={() => handleDeleteTask(index, i)} className="text-red-500 hover:text-red-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <button onClick={() => handleAddTask(index)} className="text-sm text-blue-600">+ Add Task</button>
+                <button onClick={() => handleDeleteExperience(index)} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
                 </button>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div>
+                <div className="flex justify-between items-baseline">
+                  <h3 className="font-bold text-lg text-gray-800">{exp.company}</h3>
+                  <span className="text-sm font-medium text-gray-600">{exp.date}</span>
+                </div>
+                <p className="text-gray-700 italic">{exp.title}</p>
+                <ul className="mt-2 space-y-1 text-gray-600 list-disc list-inside">
+                  {exp.tasks.map((task, i) => (
+                    <li key={i}>{task}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         ))}
       </div>
-      
       {isEditable && (
-        <button
-          onClick={handleAddExperience}
-          className="flex items-center justify-center mt-4 sm:mt-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-colors duration-300 w-full md:w-auto text-sm sm:text-base"
-        >
-          <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            ></path>
-          </svg>
-          Add Experience
-        </button>
+        <button onClick={handleAddExperience} className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg w-full">+ Add Experience</button>
       )}
     </div>
   );
