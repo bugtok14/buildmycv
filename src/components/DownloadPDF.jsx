@@ -70,7 +70,7 @@ const DownloadPDF = () => {
     <button
       onClick={handleDownload}
       disabled={isGenerating}
-      className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg md:rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center text-xs sm:text-sm"
+      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md transition-all duration-300 flex items-center cursor-pointer"
     >
       <svg
         className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2"

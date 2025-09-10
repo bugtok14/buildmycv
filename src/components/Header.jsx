@@ -79,16 +79,6 @@ const Header = ({ isEditable, setIsEditable, downloadPDF }) => {
             </>
           )}
         </button>
-        
-        <button
-          onClick={downloadPDF}
-          className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md transition-all duration-300 flex items-center cursor-pointer"
-        >
-          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-          </svg>
-          Download PDF
-        </button>
       </div>
     </header>
   );
