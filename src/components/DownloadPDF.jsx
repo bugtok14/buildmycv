@@ -38,20 +38,25 @@ const DownloadPDF = () => {
 
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      const canvasRatio = canvas.width / canvas.height;
 
-      // ✅ Scale proportionally to fit within A4
-      let finalWidth = pdfWidth;
-      let finalHeight = pdfWidth / canvasRatio;
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
 
-      // If too tall, scale by height instead
-      if (finalHeight > pdfHeight) {
-        finalHeight = pdfHeight;
-        finalWidth = pdfHeight * canvasRatio;
+      const ratio = canvasWidth / pdfWidth;
+      const canvasHeightInPDF = canvasHeight / ratio;
+
+      let heightLeft = canvasHeightInPDF;
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, canvasHeightInPDF);
+      heightLeft -= pdfHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - canvasHeightInPDF;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, canvasHeightInPDF);
+        heightLeft -= pdfHeight;
       }
-
-      // Align to top-left (no white space on left side)
-      pdf.addImage(imgData, "PNG", 0, 0, finalWidth, finalHeight);
       pdf.save("resume.pdf");
     } catch (error) {
       console.error("Error generating PDF:", error);
