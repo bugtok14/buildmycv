@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Header = ({ isEditable, setIsEditable, downloadPDF }) => {
+const Header = ({ isEditable, setIsEditable, isGeneratingPDF }) => {
   const [stars, setStars] = useState(128); // Default star count
   const [isHovered, setIsHovered] = useState(false);
 
@@ -57,6 +57,7 @@ const Header = ({ isEditable, setIsEditable, downloadPDF }) => {
       <div className="flex items-center space-x-3">
         <button
           onClick={() => setIsEditable(!isEditable)}
+          disabled={isGeneratingPDF}
           className={`px-4 py-2 cursor-pointer rounded-lg font-semibold transition-all duration-300 flex items-center ${
             isEditable 
               ? 'bg-green-500 hover:bg-green-600 shadow-md' 
