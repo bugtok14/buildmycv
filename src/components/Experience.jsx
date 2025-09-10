@@ -11,20 +11,20 @@ const Experience = ({ isEditable }) => {
       endDate: null,
       isCurrent: true,
       tasks: [
-        "Develop and execute comprehensive marketing strategies and campaigns that align with the company's goals and objectives.",
-        "Lead, mentor, and manage a high-performing marketing team, fostering a collaborative and results-driven work environment.",
-        "Monitor brand consistency across marketing channels and materials.",
+        "Executed comprehensive marketing strategies that increased lead generation by 35% and improved conversion rates by 22%.",
+        "Led a team of 8 marketing professionals, implementing performance metrics that boosted campaign efficiency by 40%",
+        "Directed brand strategy across all channels, achieving 95% consistency in brand messaging and visual identity",
       ],
     },
     {
       company: "Fauget Studio",
-      title: "Marketing Manager & Specialist",
+      title: "Marketing Manager",
       startDate: new Date("2018"),
       endDate: new Date("2022"),
       isCurrent: false,
       tasks: [
-        "Create and manage the marketing budget, ensuring efficient allocation of resources and optimizing ROI.",
-        "Oversee market research to identify emerging trends, customer needs, and competitor strategies.",
+        "Managed $1.2M annual marketing budget, optimizing spend to achieve 28% higher ROI through data-driven allocation",
+        "Pioneered market research initiatives that identified 3 new customer segments, driving 15% revenue growth",
       ],
     },
     {
@@ -34,7 +34,7 @@ const Experience = ({ isEditable }) => {
       endDate: new Date("2018"),
       isCurrent: false,
       tasks: [
-        "Monitor brand consistency across marketing channels and materials.",
+        "Executed multi-channel digital campaigns that increased social media engagement by 65% and website traffic by 45%",
       ],
     },
   ]);
@@ -75,6 +75,13 @@ const Experience = ({ isEditable }) => {
 
   const handleAddTask = (expIndex) => {
     const newExperiences = [...experiences];
+
+    // ✅ limit tasks to 3 only
+    if (newExperiences[expIndex].tasks.length >= 3) {
+      alert("You can only add up to 3 tasks per experience.");
+      return;
+    }
+
     newExperiences[expIndex].tasks.push("");
     setExperiences(newExperiences);
   };
@@ -231,9 +238,12 @@ const Experience = ({ isEditable }) => {
                   </span>
                 </div>
                 <p className="text-gray-700 italic">{exp.title}</p>
-                <ul className="mt-2 space-y-1 text-gray-600 list-disc list-inside">
+                <ul className="mt-2 space-y-1 text-gray-600">
                   {exp.tasks.map((task, i) => (
-                    <li key={i}>{task}</li>
+                    <li key={i} className="flex items-start">
+                      <span className="mr-2">•</span>
+                      <span>{task}</span>
+                    </li>
                   ))}
                 </ul>
               </div>

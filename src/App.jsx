@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <Header isEditable={isEditable} setIsEditable={setIsEditable} />
-      <div id="pdf-content" className="w-full max-w-4xl mx-auto bg-white shadow-lg">
+      <div id="pdf-content" className="w-full max-w-4xl mx-auto bg-white shadow-lg mt-15 mb-15">
         <div className="flex">
           <LeftColumn isEditable={isEditable} />
           <RightColumn isEditable={isEditable} />
